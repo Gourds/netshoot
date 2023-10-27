@@ -87,6 +87,9 @@ COPY --from=fetcher /tmp/grpcurl /usr/local/bin/grpcurl
 # Installing fortio
 COPY --from=fetcher /tmp/fortio /usr/local/bin/fortio
 
+# Installing mysql
+COPY --from=fetcher /tmp/mysql /usr/local/bin/mysql
+
 # Setting User and Home
 USER root
 WORKDIR /root
