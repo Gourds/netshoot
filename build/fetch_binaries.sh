@@ -76,9 +76,23 @@ get_fortio() {
   chmod +x /tmp/fortio
 }
 
+get_mysql(){
+  if [ "$ARCH" == "amd64" ]; then
+    TERM_ARCH=x86_64
+  else
+    TERM_ARCH="$ARCH"
+  fi
+  VERSION=$(get_latest_release fortio/fortio | sed -e 's/^v//')
+  LINK="https://cdn.mysql.com//Downloads/MySQL-5.7/mysql-5.7.44-linux-glibc2.12-${ARCH}.tar.gz"
+  wget "$LINK" -O /tmp/mysql.tar.gz  && \
+  tar -zxvf /tmp/mysql.tar.gz && \
+  mv "bin/mysql" /tmp/mysql && \
+  chmod +x /tmp/mysql 
+}
 
 get_ctop
 get_calicoctl
 get_termshark
 get_grpcurl
 get_fortio
+get_mysql
